@@ -1,0 +1,354 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+    line-height: 1.5;
+    font-size: 16px;
+    background-color: #e0dada
+}
+
+.company-block{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 210px;
+    background-color: #273E50;
+}
+
+.company-name{
+    padding-left: 30px;        
+    font-size: 50px;
+    line-height: 1;
+    font-weight: 400;
+    text-shadow: 1px 1px 1px rgba(10,10,10,10.5);
+    color: #ffffff;
+}
+
+.company-tagline{
+    padding-left: 30px;          
+    font-size: 25px;
+    line-height: 1.2;
+    font-weight: 350;
+    text-shadow: 1px 1px 1px rgba(5,5,5,5.5);
+    color: #ffffff;
+}
+
+.title{
+    padding-left: 30px;        
+    font-family: Arial;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 400;
+    text-shadow: 0px 1px 1px rgba(3,3,3,3.5);
+    color: #3192A5;
+}
+
+.picture{    
+    margin-right: 35px;
+    width: 300px;
+    height: 210px;
+    background: #ffffff;
+    font-size: 40px;
+}
+
+.info{
+    padding-left: 30px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: Arial;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #000000;
+}
+
+.square{
+    padding-left: 30px;
+    padding-top: 15px;    
+    width: 32px;
+    height: 32px;
+    background-color:#e0dada;   
+}
+
+.check{
+    margin: 6px;
+    width: 20px;
+    height: 20px;   
+    filter: invert(75%);
+}
+
+.text{      
+    padding-left: 15px;
+    padding-right: 15px;      
+    line-height: 1.5;
+    font-weight: 400;
+    color: #000000;
+}
+
+.title2{
+    padding-left: 30px;    
+    font-family: Arial;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 400;
+    text-shadow: 0px 1px 1px rgba(3,3,3,3.5);
+    color: #3192A5;
+    text-align: center;
+}
+
+.subscription-button{
+    padding-left: 30px;    
+    padding-top: 10px;
+    padding-bottom: 10px;
+   
+}
+
+.subscribe{
+    border-radius: 5px;    
+    width: 200px;
+    height: 40px;
+    background-color: #F38F00;
+    font-family: Arial;
+    font-size: 16px;    
+    font-weight: 700;    
+    color: #273E50;
+    display: block;
+    margin: 0 auto;
+}
+
+.contactus{
+    width: 100%;
+    height: 490px;
+    background-color: #273E50;
+}
+
+.title1{
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-bottom: 10px;    
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 400;
+    text-shadow: 0px 1px 1px rgba(3,3,3,3.5);
+    color: #ffffff;
+}
+
+.inputs{
+    width: 500px;
+    padding-left: 50px;  
+    padding-bottom: 20px;
+}
+
+.name{
+    margin-bottom: 10px;
+    border-radius: 5px;    
+    padding-left: 10px;
+    width: 450px;
+    height: 30px;
+    background-color: #ffffff;    
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #445162;
+}
+
+.email{
+    margin-bottom: 10px;
+    border-radius: 5px;    
+    padding-left: 10px;
+    width: 450px;
+    height: 30px;
+    background-color: #ffffff;    
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #445162;
+}
+
+.message{
+    margin-bottom: 10px;
+    border-radius: 5px;    
+    padding-left: 10px;
+    width: 450px;
+    height: 120px;
+    background-color: #ffffff;    
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #445162;
+}
+
+.send{
+    border-radius: 5px;    
+    width: 140px;
+    height: 30px;
+    background-color: #ffffff;
+    font-family: Arial;
+    font-size: 16px;    
+    font-weight: 700;    
+    color: #273E50;
+}
+
+.icon-text{
+    display: flex;    
+}
+
+.icon-text-contacts{
+    display: flex;
+    padding-left: 50px;
+    padding-bottom: 5px;
+    width: 300px;
+}
+
+.icon-info{
+    padding-left: 10px;
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 1px;
+    font-weight: 400;
+    color: #ffffff;    
+}
+
+.wrapper-review{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-row-gap: 35px;
+}
+
+.review-text{
+    display: flex;
+    padding-left: 30px;
+}
+
+.photo{
+    padding-left: 0px;
+    width: 100px;
+    height: 100px;
+    background-color: #273E50;
+}
+
+.rev-rectangle{
+    width: 360px;
+    height: 120px;
+}
+
+.rev-info{
+    padding-top: 15px;
+    padding-left: 25px;
+    background-image: url(/icons/bg_review_195.png);
+    width: 335px;
+    height: 121px;
+    font-family: Arial;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 400;
+    font-style: italic;
+    color: #333333;
+}
+
+.author{    
+    color: #3192A5;
+}
+
+.sub-section{
+    padding-top: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 550px;
+    background-color: #e0dada;
+}
+
+.subs-info{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+
+.start{
+    margin-right: 20px;
+    border-radius: 5px;
+    background-color: #273E50;
+    width: 300px;
+    height: 360px;
+}
+
+.medium{
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    background-color: #273E50;
+    width: 300px;
+    height: 408px;
+}
+
+.premium{
+    margin-left: 20px;
+    border-radius: 5px;
+    background-color: #273E50;
+    width: 300px;
+    height: 456px;
+}
+
+.start-section{
+    text-align: center;   
+    font-family: Arial;    
+    line-height: 30px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+.start-rectangle{
+    background-color: #ffffff;     
+    border: 3px solid #273E50;
+}
+
+.price{   
+    text-align: center;    
+    font-size: 40px;
+    line-height: 3px;    
+    color: #273E50;
+}
+
+.list{
+    padding-top: 20px;
+    padding-left: 40px;    
+    font-size: 15px;
+    line-height: 24px;    
+    color: #ffffff;
+}
+
+.subscribe-now{
+    margin-left: 20px;
+    margin-top: 20px;
+    border-radius: 5px;    
+    width: 260px;
+    height: 40px;
+    background-color: #F38F00;
+    font-family: Arial;
+    font-size: 18px;    
+    font-weight: 700;
+    color: #273E50;
+}
+
+.back-button{
+    padding-left: 50px;    
+    padding-bottom: 10px;   
+}
+
+.back{
+    border-radius: 5px;    
+    width: 140px;
+    height: 40px;
+    background-color: #3192A5;
+    font-family: Arial;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;    
+    color: #273E50;
+}

@@ -1,0 +1,7518 @@
+{
+	"info": {
+		"_postman_id": "c240bc4d-4dd3-497d-8da0-45043fb845c3",
+		"name": "Cource Platform (E2E flow, PROD)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Autth-Controller (Admin)",
+			"item": [
+				{
+					"name": "Signup Admin 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let email = JSON.parse(pm.request.body.raw).email;\r",
+									"pm.environment.set(\"adminemail\", email);\r",
+									"\r",
+									"let password = JSON.parse(pm.request.body.raw).password;\r",
+									"pm.environment.set(\"adminpass\", password);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"platformcourse5@ukr.net\",\r\n  \"firstname\": \"Анатолий\",\r\n  \"lastname\": \"Анатольев\",\r\n  \"phone\": \"888888888\",\r\n  \"password\": \"qwerty1234\",\r\n  \"confirmPassword\": \"qwerty1234\",\r\n  \"companyName\": \"Company 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}​/api/auth/signup",
+							"host": [
+								"{{url2}}​"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup Admin 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let email = JSON.parse(pm.request.body.raw).email;\r",
+									"pm.environment.set(\"adminemail2\", email);\r",
+									"\r",
+									"let password = JSON.parse(pm.request.body.raw).password;\r",
+									"pm.environment.set(\"adminpass2\", password);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"platformcourse2@outlook.com\",\r\n  \"firstname\": \"Виктория\",\r\n  \"lastname\": \"Викторова\",\r\n  \"phone\": \"999999999\",\r\n  \"password\": \"qwerty1234\",\r\n  \"confirmPassword\": \"qwerty1234\",\r\n  \"companyName\": \"Company 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}​/api/auth/signup",
+							"host": [
+								"{{url2}}​"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recovery-Controller",
+			"item": [
+				{
+					"name": "Recovery Password (Unregistered e-mail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404, 405, 422]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"platformcourse55@ukr.net\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}​/recovery",
+							"host": [
+								"{{url2}}​"
+							],
+							"path": [
+								"recovery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recovery Password (Invalid Data)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404, 405, 422]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"platformcourse5ukr.net\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/recovery",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"recovery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recovery Password (Empty Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404, 405, 422]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/recovery",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"recovery"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth Controller (Admin)",
+			"item": [
+				{
+					"name": "Sign in (Unregistered E-mail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"platformcourse55@ukr.net\",\r\n    \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/auth/signin",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in (Empty E-mail Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": null,\r\n    \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/auth/signin",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in (Unregistered Password)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"platformcourse5@ukr.net\",\r\n    \"password\": \"qwerty1234321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/auth/signin",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in (Empty Password Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"platformcourse5@ukr.net\",\r\n    \"password\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/auth/signin",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in with Valid Data (Admin 1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"Bearer\", resBody.type);\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"reftoken\", resBody.refreshToken);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"{{adminemail}}\",\r\n    \"password\": \"{{adminpass}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/auth/signin",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in With Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token2\", resBody.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"refreshToken\": \"{{reftoken}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/auth/refresh-token",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User-Controller (Admin 1)",
+			"item": [
+				{
+					"name": "Get User (Admin 1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"adminid\", resBody._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/getRole",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"getRole"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/{{adminid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"{{adminid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid Name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"   \",\r\n    \"lastname\": \"Анатольев\",\r\n    \"email\": \"platformcourse5@ukr.net\",\r\n    \"phone\": \"112233445\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Empty Name Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": null,\r\n    \"lastname\": \"Анатольев\",\r\n    \"email\": \"platformcourse5@ukr.net\",\r\n    \"phone\": \"112233445\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid Lastname)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Анатолий\",\r\n    \"lastname\": \"   \",\r\n    \"email\": \"platformcourse5@ukr.net\",\r\n    \"phone\": \"112233445\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Empty Lastname Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Анатолий\",\r\n    \"lastname\": null,\r\n    \"email\": \"platformcourse5@ukr.net\",\r\n    \"phone\": \"112233445\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid Phone)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Анатолий\",\r\n    \"lastname\": \"Анатольев\",\r\n    \"email\": \"platformcourse5@ukr.net\",\r\n    \"phone\": \"aaa@+?!1111\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Empty Phone Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Анатолий\",\r\n    \"lastname\": \"Анатольев\",\r\n    \"email\": \"platformcourse5@ukr.net\",\r\n    \"phone\": null,\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid User's Date)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Анатолий\",\r\n    \"lastname\": \"Анатольев\",\r\n    \"email\": \"platformcourse5@ukr.net\",\r\n    \"phone\": \"112233445\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": \"01.01.2006\",\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Admin 1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Анатолий\",\r\n    \"lastname\": \"Анатольев\",\r\n    \"email\": \"platformcourse5@ukr.net\",\r\n    \"phone\": \"112233445\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": \"01.01.2000\",\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Admin 1 Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"oldPassword\": \"qwerty1234\",\r\n  \"newPassword\": \"qwerty12345\",\r\n  \"newPasswordConfirmation\": \"qwerty12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account/pass",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account",
+								"pass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Admin 1 Password Back",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"oldPassword\": \"qwerty12345\",\r\n  \"newPassword\": \"qwerty1234\",\r\n  \"newPasswordConfirmation\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account/pass",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account",
+								"pass"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profession Controller",
+			"item": [
+				{
+					"name": "Add new Profession",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"profid\", resBody._id);\r",
+									"\r",
+									"let slug = JSON.parse(pm.request.body.raw).slug;\r",
+									"pm.environment.set(\"groupname\", slug);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Absolutly new Course\",\r\n  \"slug\": \"course\",\r\n  \"present\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profession by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profession",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profession",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"New Course\",\r\n  \"slug\": \"course\",\r\n  \"present\": true,\r\n  \"startDate\": \"2021-09-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Make Profession Hiden",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"present\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/makePublic",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"makePublic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Make Profession Public",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"present\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/makePublic",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"makePublic"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Controller",
+			"item": [
+				{
+					"name": "Update Group Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let name = JSON.parse(pm.request.body.raw).name;\r",
+									"pm.environment.set(\"groupname2\", name);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Group 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-group/{{groupname}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-group",
+								"{{groupname}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Group 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let name = JSON.parse(pm.request.body.raw).name;\r",
+									"pm.environment.set(\"groupname3\", name);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Group 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/create-group",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"create-group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Profession Date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"startDate\": \"2021-09-07\",\r\n  \"endDate\": \"2021-12-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}​/api/profession/{{profid}}/admin-page/groups/{{groupname2}}/set-profession-date",
+							"host": [
+								"{{url2}}​"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"groups",
+								"{{groupname2}}",
+								"set-profession-date"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Groups",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/groups",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher (Invalid Name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"   \",\r\n  \"lastname\": \"Тимофеев\",\r\n  \"email\": \"1@test.com\",\r\n  \"phone\": \"1111111111\",\r\n  \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher (Empty Name Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": null,\r\n  \"lastname\": \"Тимофеев\",\r\n  \"email\": \"1@test.com\",\r\n  \"phone\": \"1111111111\",\r\n  \"password\": \"qwerty1234\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher (Invalid Lastname)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Proxy-Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Тимофей\",\r\n  \"lastname\": \"   \",\r\n  \"email\": \"1@test.com\",\r\n  \"phone\": \"1111111111\",\r\n  \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher (Empty Lastname Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Тимофей\",\r\n  \"lastname\": null,\r\n  \"email\": \"1@test.com\",\r\n  \"phone\": \"1111111111\",\r\n  \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher (Invalid e-mail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Тимофей\",\r\n  \"lastname\": \"Тимофеев\",\r\n  \"email\": \"1test.com\",\r\n  \"phone\": \"1111111111\",\r\n  \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher (Empty e-mail Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Тимофей\",\r\n  \"lastname\": \"Тимофеев\",\r\n  \"email\": null,\r\n  \"phone\": \"1111111111\",\r\n  \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher (Invalid Phone)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Тимофей\",\r\n  \"lastname\": \"Тимофеев\",\r\n  \"email\": \"1@test.com\",\r\n  \"phone\": \"aaa@+?!1111\",\r\n  \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher (Empty Phone Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Тимофей\",\r\n  \"lastname\": \"Тимофеев\",\r\n  \"email\": \"1@test.com\",\r\n  \"phone\": null,\r\n  \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher (Invalid Password)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Тимофей\",\r\n  \"lastname\": \"Тимофеев\",\r\n  \"email\": \"1@test.com\",\r\n  \"phone\": \"1111111111\",\r\n  \"password\": \"aaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher (Empty Password Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Тимофей\",\r\n  \"lastname\": \"Тимофеев\",\r\n  \"email\": \"1@test.com\",\r\n  \"phone\": \"1111111111\",\r\n  \"password\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher to Group 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"teachid\", resBody._id);\r",
+									"\r",
+									"let email = JSON.parse(pm.request.body.raw).email;\r",
+									"pm.environment.set(\"teachemail\", email);\r",
+									"\r",
+									"let password = JSON.parse(pm.request.body.raw).password;\r",
+									"pm.environment.set(\"teachpass\", password);\r",
+									"\r",
+									"let firstname = JSON.parse(pm.request.body.raw).firstname;\r",
+									"pm.environment.set(\"teachname\", firstname);\r",
+									"\r",
+									"let lastname = JSON.parse(pm.request.body.raw).lastname;\r",
+									"pm.environment.set(\"teachlastname\", lastname);\r",
+									"\r",
+									"let phone = JSON.parse(pm.request.body.raw).phone;\r",
+									"pm.environment.set(\"teachphone\", phone);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Тимофей\",\r\n  \"lastname\": \"Тимофеев\",\r\n  \"email\": \"1@test.com\",\r\n  \"phone\": \"1111111111\",\r\n  \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Teachers in Group 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/all/teachers/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"all",
+								"teachers",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1 (Invalid Name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": \"   \",\r\n  \"lastname\": \"Timofeevv\",\r\n  \"email\": \"{{teachemail}}\",\r\n  \"phone\": \"1111111111\",\r\n  \"country\": \"Ukraine\",\r\n  \"city\": \"Kyiv\",\r\n  \"birthday\": \"01.01.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1 (Empty Name Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": null,\r\n  \"lastname\": \"Timofeevv\",\r\n  \"email\": \"{{teachemail}}\",\r\n  \"phone\": \"1111111111\",\r\n  \"country\": \"Ukraine\",\r\n  \"city\": \"Kyiv\",\r\n  \"birthday\": \"01.01.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1 (Invalid Lastname)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": \"Timofey\",\r\n  \"lastname\": \"   \",\r\n  \"email\": \"{{teachemail}}\",\r\n  \"phone\": \"1111111111\",\r\n  \"country\": \"Ukraine\",\r\n  \"city\": \"Kyiv\",\r\n  \"birthday\": \"01.01.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1 (Empty Lastname)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": \"Timofey\",\r\n  \"lastname\": null,\r\n  \"email\": \"{{teachemail}}\",\r\n  \"phone\": \"1111111111\",\r\n  \"country\": \"Ukraine\",\r\n  \"city\": \"Kyiv\",\r\n  \"birthday\": \"01.01.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1 (Invalid e-mail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": \"Timofey\",\r\n  \"lastname\": \"Timofeev\",\r\n  \"email\": \"1test.com\",\r\n  \"phone\": \"1111111111\",\r\n  \"country\": \"Ukraine\",\r\n  \"city\": \"Kyiv\",\r\n  \"birthday\": \"01.01.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1 (Empty e-mail Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": \"Timofey\",\r\n  \"lastname\": \"Timofeev\",\r\n  \"email\": null,\r\n  \"phone\": \"1111111111\",\r\n  \"country\": \"Ukraine\",\r\n  \"city\": \"Kyiv\",\r\n  \"birthday\": \"01.01.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1 (Invalid Phone)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": \"Timofey\",\r\n  \"lastname\": \"Timofeev\",\r\n  \"email\": \"{{teachemail}}\",\r\n  \"phone\": \"aaa@+?!1111\",\r\n  \"country\": \"Ukraine\",\r\n  \"city\": \"Kyiv\",\r\n  \"birthday\": \"01.01.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1 (Empty Phohe Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": \"Timofey\",\r\n  \"lastname\": \"Timofeev\",\r\n  \"email\": \"{{teachemail}}\",\r\n  \"phone\": null,\r\n  \"country\": \"Ukraine\",\r\n  \"city\": \"Kyiv\",\r\n  \"birthday\": \"01.01.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1 (Invalid Counry)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": \"Timofey\",\r\n  \"lastname\": \"Timofeev\",\r\n  \"email\": \"{{teachemail}}\",\r\n  \"phone\": \"1111111111\",\r\n  \"country\": \"123#$%^&*+{}\",\r\n  \"city\": \"Kyiv\",\r\n  \"birthday\": \"01.01.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1 (Invalid City)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": \"Timofey\",\r\n  \"lastname\": \"Timofeev\",\r\n  \"email\": \"{{teachemail}}\",\r\n  \"phone\": \"1111111111\",\r\n  \"country\": \"Ukraine\",\r\n  \"city\": \"123#$%^&*+{}\",\r\n  \"birthday\": \"01.01.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1 (Invalid User's Date)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": \"Timofey\",\r\n  \"lastname\": \"Timofeev\",\r\n  \"email\": \"{{teachemail}}\",\r\n  \"phone\": \"1111111111\",\r\n  \"country\": \"Ukraine\",\r\n  \"city\": \"Kyiv\",\r\n  \"birthday\": \"01.01.2006\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher in Group 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_id\": \"{{teachid}}\",\r\n  \"firstname\": \"Timofey\",\r\n  \"lastname\": \"Timofeev\",\r\n  \"email\": \"{{teachemail}}\",\r\n  \"phone\": \"1111111111\",\r\n  \"country\": \"Ukraine\",\r\n  \"city\": \"Kyiv\",\r\n  \"birthday\": \"01.01.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/update-user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"update-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Teacher to Group 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"teachid2\", resBody._id);\r",
+									"\r",
+									"let email = JSON.parse(pm.request.body.raw).email;\r",
+									"pm.environment.set(\"teachemail2\", email);\r",
+									"\r",
+									"let password = JSON.parse(pm.request.body.raw).password;\r",
+									"pm.environment.set(\"teachpass2\", password);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Евгений\",\r\n  \"lastname\": \"Евгеньев\",\r\n  \"email\": \"2@test.com\",\r\n  \"phone\": \"1111111111\",\r\n  \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/teacher/{{groupname3}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"teacher",
+								"{{groupname3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Teachers in Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/all/teachers/{{groupname3}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"all",
+								"teachers",
+								"{{groupname3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Student to Group 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"studid\", resBody._id);\r",
+									"\r",
+									"let email = JSON.parse(pm.request.body.raw).email;\r",
+									"pm.environment.set(\"studemail\", email);\r",
+									"\r",
+									"let password = JSON.parse(pm.request.body.raw).password;\r",
+									"pm.environment.set(\"studpass\", password);\r",
+									"\r",
+									"let firstname = JSON.parse(pm.request.body.raw).firstname;\r",
+									"pm.environment.set(\"studname\", firstname);\r",
+									"\r",
+									"let lastname = JSON.parse(pm.request.body.raw).lastname;\r",
+									"pm.environment.set(\"studlastname\", lastname);\r",
+									"\r",
+									"let phone = JSON.parse(pm.request.body.raw).phone;\r",
+									"pm.environment.set(\"studphone\", phone);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Матвей\",\r\n  \"lastname\": \"Матвеев\",\r\n  \"email\": \"3@test.com\",\r\n  \"phone\": \"2222222222\",\r\n  \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/student/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"student",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Student to Group 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"studid2\", resBody._id);\r",
+									"\r",
+									"let email = JSON.parse(pm.request.body.raw).email;\r",
+									"pm.environment.set(\"studemail2\", email);\r",
+									"\r",
+									"let password = JSON.parse(pm.request.body.raw).password;\r",
+									"pm.environment.set(\"studpass2\", password);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Андрей\",\r\n  \"lastname\": \"Андреев\",\r\n  \"email\": \"4@test.com\",\r\n  \"phone\": \"2222222222\",\r\n  \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/add/student/{{groupname3}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"add",
+								"student",
+								"{{groupname3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Students in Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/all/students/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"all",
+								"students",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Group 1 Information by Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/groups/{{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"groups",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Group 2 Information by Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/groups/{{groupname3}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"groups",
+								"{{groupname3}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module Controller (Admin)",
+			"item": [
+				{
+					"name": "Add new Module",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let number = JSON.parse(pm.request.body.raw).number;\r",
+									"pm.environment.set(\"modnum\", number);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"number\": 1,\r\n  \"name\": \"Module 1\",\r\n  \"description\": \"First\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Module by Number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Module",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let number = JSON.parse(pm.request.body.raw).number;\r",
+									"pm.environment.set(\"modnum2\", number);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"number\": 1,\r\n  \"name\": \"Введение в профессию\",\r\n  \"description\": \"Вы научитесь основам новой профессии\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Updated Module by Number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Module Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Module Progress Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/progress",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"progress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Additional Materials Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/additional-materials",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"additional-materials"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lesson-Controller (Admin)",
+			"item": [
+				{
+					"name": "Add Lesson 1 to Module",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let number = JSON.parse(pm.request.body.raw).number;\r",
+									"pm.environment.set(\"lessnum\", number);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n  \"number\": 1,\r\n  \"name\": \"Lesson\",\r\n  \"description\": \"Useful lesson\",\r\n  \"homeworkDescription\": \"HW1\",\r\n  \"teacherEmail\": \"{{teachemail}}\",\r\n  \"eventType\": \"Lesson\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lessons in Module",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Lesson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let number = JSON.parse(pm.request.body.raw).number;\r",
+									"pm.environment.set(\"lessnum2\", number);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"number\": 1,\r\n  \"name\": \"Урок №1\",\r\n  \"description\": \"Ознакомительный урок\",  \r\n  \"homeworkDescription\": \"ДЗ1\",\r\n  \"teacherEmail\": \"{{teachemail}}\",\r\n  \"eventType\": \"Домашнее задание\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum}}/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Date to the Lesson 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"startDate\": \"2021-09-07 11:39:14\",\r\n  \"duration\": 180\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}​​/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/set-date/{{groupname2}}",
+							"host": [
+								"{{url2}}​​"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"set-date",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lesson by Number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"/*var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"hwdescr\", resBody.homeworkDescription);*/\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"hwcomment\", resBody.commentForHomework);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Lesson 2 to Module",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let number = JSON.parse(pm.request.body.raw).number;\r",
+									"pm.environment.set(\"lessnum3\", number);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n  \"number\": 2,\r\n  \"name\": \"Вводная лекция\",\r\n  \"description\": \"Введение в профессию\",\r\n  \"homeworkDescription\": null,\r\n  \"teacherEmail\": \"{{teachemail}}\",\r\n  \"eventType\": \"Lesson\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Date to the Lesson 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"startDate\": \"2021-09-07 13:30:00\",\r\n  \"duration\": 180\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}​​/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum3}}/set-date/{{groupname2}}",
+							"host": [
+								"{{url2}}​​"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum3}}",
+								"set-date",
+								"{{groupname2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace Lessons in List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"topNumber\": 1,\r\n  \"bottomNumber\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/swap",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"swap"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Materials to Lesson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"matid\", resBody.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Терминология\",\r\n  \"type\": \"document\",\r\n  \"link\": \"https://drive.google.com/uc?export=download&id=1RhixocvupdP3nZ54MQmC8XOiMvJFCpuk\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/additional-materials",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"additional-materials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Added Materials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/additional-materials",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"additional-materials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Materials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Glossary\",\r\n  \"type\": \"document\",\r\n  \"link\": \"https://drive.google.com/uc?export=download&id=1RhixocvupdP3nZ54MQmC8XOiMvJFCpuk\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum}}/lesson/{{lessnum}}/additional-materials/{{matid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum}}",
+								"lesson",
+								"{{lessnum}}",
+								"additional-materials",
+								"{{matid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Updated Materials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/additional-materials",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"additional-materials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Video to Lesson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let link = JSON.parse(pm.request.body.raw).link;\r",
+									"pm.environment.set(\"videofile\", link);\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"videoid\", resBody._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Video 1\",\r\n  \"preview\": \"https://course-platform.stage-realpro.com/public/img/default-video-background.png\",\r\n  \"link\": \"https://drive.google.com/file/d/1nDN8hIGrsMJ2EDy32-oYMilrEC3NdCH7/preview\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/add-video",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"add-video"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Calendar for Admin 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/calendar/admin?professionId={{profid}}&month=10&year=2021&group={{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"calendar",
+								"admin"
+							],
+							"query": [
+								{
+									"key": "professionId",
+									"value": "{{profid}}"
+								},
+								{
+									"key": "month",
+									"value": "10"
+								},
+								{
+									"key": "year",
+									"value": "2021"
+								},
+								{
+									"key": "group",
+									"value": "{{groupname2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Calendar-Controller (Admin)",
+			"item": [
+				{
+					"name": "Get Calendar for Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/calendar?professionId={{profid}}&month=10&year=2021&group={{groupname2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"calendar"
+							],
+							"query": [
+								{
+									"key": "professionId",
+									"value": "{{profid}}"
+								},
+								{
+									"key": "month",
+									"value": "10"
+								},
+								{
+									"key": "year",
+									"value": "2021"
+								},
+								{
+									"key": "group",
+									"value": "{{groupname2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth Controller (Teacher)",
+			"item": [
+				{
+					"name": "Sign in (Teacher)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token3\", resBody.token);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"{{teachemail}}\",\r\n    \"password\": \"{{teachpass}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/auth/signin",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User-Controller (Teacher)",
+			"item": [
+				{
+					"name": "Get User (Teacher)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"adminid\", resBody._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/getRole",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"getRole"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/{{adminid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"{{adminid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid Name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"   \",\r\n    \"lastname\": \"Тимофеев\",\r\n    \"email\": \"{{teachemail}}\",\r\n    \"phone\": \"1111111111\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Empty Name Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": null,\r\n    \"lastname\": \"Тимофеев\",\r\n    \"email\": \"{{teachemail}}\",\r\n    \"phone\": \"1111111111\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid Lastname)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Тимофей\",\r\n    \"lastname\": \"   \",\r\n    \"email\": \"{{teachemail}}\",\r\n    \"phone\": \"1111111111\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Empty Lastname Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Тимофей\",\r\n    \"lastname\": null,\r\n    \"email\": \"{{teachemail}}\",\r\n    \"phone\": \"1111111111\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid Phone)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Тимофей\",\r\n    \"lastname\": \"Тимофеев\",\r\n    \"email\": \"{{teachemail}}\",\r\n    \"phone\": \"aaa@+?!1111\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Empty Phone Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Тимофей\",\r\n    \"lastname\": \"Тимофеев\",\r\n    \"email\": \"{{teachemail}}\",\r\n    \"phone\": null,\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid Country Name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Тимофей\",\r\n    \"lastname\": \"Тимофеев\",\r\n    \"email\": \"{{teachemail}}\",\r\n    \"phone\": \"112233445\",\r\n    \"country\": \"123#$%^&*+{}\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": \"01.01.2000\",\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid City Name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Тимофей\",\r\n    \"lastname\": \"Тимофеев\",\r\n    \"email\": \"{{teachemail}}\",\r\n    \"phone\": \"112233445\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"123#$%^&*+{}\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": \"01.01.2000\",\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid User's Date)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Тимофей\",\r\n    \"lastname\": \"Тимофеев\",\r\n    \"email\": \"{{teachemail}}\",\r\n    \"phone\": \"1111111111\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": \"01.01.2006\",\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Teacher 1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Timofey\",\r\n    \"lastname\": \"Timofeyev\",\r\n    \"email\": \"{{teachemail}}\",\r\n    \"phone\": \"112233445\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": \"01.01.2000\",\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Admin 1 Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"oldPassword\": \"qwerty1234\",\r\n  \"newPassword\": \"qwerty12345\",\r\n  \"newPasswordConfirmation\": \"qwerty12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account/pass",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account",
+								"pass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Admin 1 Password Back",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"oldPassword\": \"qwerty12345\",\r\n  \"newPassword\": \"qwerty1234\",\r\n  \"newPasswordConfirmation\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account/pass",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account",
+								"pass"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module Controller (Teacher)",
+			"item": [
+				{
+					"name": "Get Profession by ID in Teacher Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profession Controller (Admin)",
+			"item": [
+				{
+					"name": "Make Profession Public",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"present\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/makePublic",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"makePublic"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module Controller (Teacher)",
+			"item": [
+				{
+					"name": "Get Profession by ID in Teacher Account After Making Public",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"homeworkDescription\": \"Посмотреть внимательно видео презентацию 3 раза. Ответить на 3 вопроса: 1). Вопрос №1 2). Вопрос №2 Вопрос №3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/homework",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"homework"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Updated Module by Number (Teacher)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lesson with Homework by Number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Calendar-Controller (Teacher)",
+			"item": [
+				{
+					"name": "Get Calendar for Teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/calendar?professionId={{profid}}&month=10&year=2021",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"calendar"
+							],
+							"query": [
+								{
+									"key": "professionId",
+									"value": "{{profid}}"
+								},
+								{
+									"key": "month",
+									"value": "10"
+								},
+								{
+									"key": "year",
+									"value": "2021"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth Controller (Student)",
+			"item": [
+				{
+					"name": "Sign in (Student)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token4\", resBody.token);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"{{studemail}}\",\r\n    \"password\": \"{{studpass}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/auth/signin",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User-Controller (Studentr)",
+			"item": [
+				{
+					"name": "Get User (Teacher)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"adminid\", resBody._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/getRole",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"getRole"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/{{adminid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"{{adminid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid Name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"   \",\r\n    \"lastname\": \"Матвеев\",\r\n    \"email\": \"{{studemail}}\",\r\n    \"phone\": \"2222222222\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Empty Name Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": null,\r\n    \"lastname\": \"Матвеев\",\r\n    \"email\": \"{{studemail}}\",\r\n    \"phone\": \"2222222222\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid Lastname)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Матвей\",\r\n    \"lastname\": \"   \",\r\n    \"email\": \"{{studemail}}\",\r\n    \"phone\": \"2222222222\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Empty Lastname Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Матвей\",\r\n    \"lastname\": null,\r\n    \"email\": \"{{studemail}}\",\r\n    \"phone\": \"2222222222\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid Phone)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Матвей\",\r\n    \"lastname\": \"Матвеев\",\r\n    \"email\": \"{{studemail}}\",\r\n    \"phone\": \"aaa@+?!1111\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Empty Phone Field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Матвей\",\r\n    \"lastname\": \"Матвеев\",\r\n    \"email\": \"{{studemail}}\",\r\n    \"phone\": null,\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": null,\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid Country Name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Матвей\",\r\n    \"lastname\": \"Матвеев\",\r\n    \"email\": \"{{studemail}}\",\r\n    \"phone\": \"2222222222\",\r\n    \"country\": \"123#$%^&*+{}\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": \"01.01.2000\",\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid City Name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Матвей\",\r\n    \"lastname\": \"Матвеев\",\r\n    \"email\": \"{{studemail}}\",\r\n    \"phone\": \"2222222222\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"123#$%^&*+{}\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": \"01.01.2000\",\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Invalid User's Date)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 404]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Матвей\",\r\n    \"lastname\": \"Матвеев\",\r\n    \"email\": \"{{studemail}}\",\r\n    \"phone\": \"2222222222\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": \"01.01.2006\",\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Student 1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Matvey\",\r\n    \"lastname\": \"Matveyev\",\r\n    \"email\": \"{{studemail}}\",\r\n    \"phone\": \"2222222222\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kharkov\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": \"01.01.2000\",\r\n    \"gender\": \"male\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Admin 1 Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"oldPassword\": \"qwerty1234\",\r\n  \"newPassword\": \"qwerty12345\",\r\n  \"newPasswordConfirmation\": \"qwerty12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account/pass",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account",
+								"pass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Admin 1 Password Back",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"oldPassword\": \"qwerty12345\",\r\n  \"newPassword\": \"qwerty1234\",\r\n  \"newPasswordConfirmation\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account/pass",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account",
+								"pass"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module-Controller (Student)",
+			"item": [
+				{
+					"name": "Get Profession by ID in Student Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Calendar-Controller (Student)",
+			"item": [
+				{
+					"name": "Get Calendar for Student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/calendar?professionId={{profid}}&month=10&year=2021",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"calendar"
+							],
+							"query": [
+								{
+									"key": "professionId",
+									"value": "{{profid}}"
+								},
+								{
+									"key": "month",
+									"value": "10"
+								},
+								{
+									"key": "year",
+									"value": "2021"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lesson-Controller (Student)",
+			"item": [
+				{
+					"name": "Rate the Lesson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/rate/5",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"rate",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pass Homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"url\": \"https://docs.google.com/document/d/1oodvmpPRxU4P8D9UVjHccPfnG1E_Z-9r1mWO9rCwyV4/edit?usp=sharing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/homework",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"homework"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment-Controller",
+			"item": [
+				{
+					"name": "Add Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"comnum\", resBody.commentNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"comment\": \"Нереально крутой видео-курс. Лучшее, что я смотрел за последнее время\",\r\n  \"replyId\": 0,\r\n  \"createdAt\": \"2021-09-07T18:12:12.367Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/comment/create",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"comment",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/comment",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Added Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"updatedComment\": \"Очень информативно\",\r\n  \"commentNumber\": {{comnum}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/comment/update",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"comment",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/comment",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token4}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/comment/{{comnum}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"comment",
+								"{{comnum}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher-Controller",
+			"item": [
+				{
+					"name": "Add Lesson Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"Сдано\",\r\n  \"comment\": \"Очень хорошо\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/teacher-page/profession-progress/{{studid}}/{{modnum2}}/{{lessnum2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"teacher-page",
+								"profession-progress",
+								"{{studid}}",
+								"{{modnum2}}",
+								"{{lessnum2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Group Information",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}​/api/profession/{{profid}}/teacher-page/students",
+							"host": [
+								"{{url2}}​"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"teacher-page",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Student Progress",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/teacher-page/progress/{{studid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"teacher-page",
+								"progress",
+								"{{studid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profession Rate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/teacher-page/profession-rate/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"teacher-page",
+								"profession-rate",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Student's Profession Progress",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}​/api/profession/{{profid}}/teacher-page/profession-progress/{{studid}}",
+							"host": [
+								"{{url2}}​"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"teacher-page",
+								"profession-progress",
+								"{{studid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lesson-Controller (Teacher)",
+			"item": [
+				{
+					"name": "Delete Materials from Lesson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/additional-materials/{{matid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"additional-materials",
+								"{{matid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Video from Lesson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}/delete-video/{{videoid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}",
+								"delete-video",
+								"{{videoid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Lesson 1 from Module",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Lesson 2 from Module",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token3}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}/lesson/{{lessnum3}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}",
+								"lesson",
+								"{{lessnum3}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module Controller (Admin 1)",
+			"item": [
+				{
+					"name": "Delete Updated Module",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/module/{{modnum2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"module",
+								"{{modnum2}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Controller",
+			"item": [
+				{
+					"name": "Delete Teacher 2 From Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/remove-user/{{teachid2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"remove-user",
+								"{{teachid2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Student 2 from Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/remove-user/{{studid2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"remove-user",
+								"{{studid2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Teacher 1 From Profession",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/remove-user/{{teachid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"remove-user",
+								"{{teachid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Student 1 from Profession",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/remove-user/{{studid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"remove-user",
+								"{{studid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Group 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/delete-group/{{groupname2}}/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"delete-group",
+								"{{groupname2}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Group 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}/admin-page/delete-group/{{groupname3}}/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}",
+								"admin-page",
+								"delete-group",
+								"{{groupname3}}",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profession Controller (Admin)",
+			"item": [
+				{
+					"name": "Delete Profession",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/profession/{{profid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"profession",
+								"{{profid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth-Controller (Admin 2)",
+			"item": [
+				{
+					"name": "Sign in with Valid Data (Admin 2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token5\", resBody.token);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"{{adminemail2}}\",\r\n    \"password\": \"{{adminpass2}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/auth/signin",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User-Controller (Admin 2)",
+			"item": [
+				{
+					"name": "Get User (Admin 2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resBody = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"adminid2\", resBody._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token5}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data (Admin 2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token5}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Виктория\",\r\n    \"lastname\": \"Викторова\",\r\n    \"email\": \"platformcourse2@outlook.com\",\r\n    \"phone\": \"11112222\",\r\n    \"country\": \"Ukraine\",\r\n    \"city\": \"Kyiv\",\r\n    \"photoProfile\": {\r\n        \"lastModified\": null,\r\n        \"lastModifiedDate\": null,\r\n        \"name\": null,\r\n        \"size\": 0,\r\n        \"type\": null,\r\n        \"webkitRelativePath\": null\r\n    },\r\n    \"birthday\": \"03.04.2005\",\r\n    \"gender\": \"woman\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/user/account",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Admin 1 by Admin 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token5}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/remove-user/{{adminid}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"remove-user",
+								"{{adminid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Current User (Admin 2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Bearer}} {{token5}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url2}}/api/user/remove-user/{{adminid2}}",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"remove-user",
+								"{{adminid2}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
