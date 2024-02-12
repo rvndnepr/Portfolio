@@ -1,7 +1,7 @@
 import time
 from pages.page_elements import CheckboxPage
 from pages.page_elements import TextBoxPage
-# from pages.page_elements import RadioButtonPage
+from pages.page_elements import RadioButtonPage
 from pages.page_elements import WebTablesPage
 from pages.page_elements import ButtonsPage
 from pages.page_elements import LinksPage
@@ -30,8 +30,33 @@ class TestSite:
         print(checked_checkbox_items)
         print(output_list_items)
         checkbox_page.collapse_full_list()
-        checkbox_page.go_to_web_tables_page()
+        checkbox_page.go_to_radio_buttons_page()
         assert checked_checkbox_items == output_list_items
+
+    def test_radio_buttons(self, init_driver):
+        radio_buttons_page = RadioButtonPage(init_driver, "https://demoqa.com/radio-button")
+        element_text = radio_buttons_page.click_any_radio_button()
+        time.sleep(1)
+        # output_text = radio_buttons_page.get_output_result()
+        radio_buttons_page.go_to_web_tables_page()
+        print(element_text)
+        # print(output_text)
+        # assert element_text == output_text
+
+    # def test_radio_buttons(self, init_driver):
+    #     radio_buttons_page = RadioButtonPage(init_driver, "https://demoqa.com/radio-button")
+    #     radio_buttons_page.click_any_radio_button("Yes")
+    #     time.sleep(0.5)
+    #     output_yes = radio_buttons_page.get_output_result()
+    #     radio_buttons_page.click_any_radio_button("Impressive")
+    #     time.sleep(0.5)
+    #     output_impressive = radio_buttons_page.get_output_result()
+    #     # radio_buttons_page.click_any_radio_button("No")
+    #     # output_no = radio_buttons_page.get_output_result()
+    #     # radio_buttons_page.go_to_web_tables_page()
+    #     assert output_yes == "Yes", "'Yes' hasn't been selected"
+    #     assert output_impressive == "Impressive", "'Impressive' hasn't been selected"
+    #     # assert output_no == "No", "'No' hasn't been selected"
 
     # def test_web_table_page(self, init_driver):
     #     web_table_page = WebTablesPage(init_driver, "https://demoqa.com/webtables")
@@ -119,29 +144,5 @@ class TestSite:
     def test_broken_links(self, init_driver):
         links_page = LinksPage(init_driver, "https://demoqa.com/links")
         result = links_page.check_broken_link('https://demoqa.com/bad-request')
+        links_page.go_to_broken_links_page()
         assert result == 400, "the link works or the status code in son 400"
-
-
-    # def test_radio_buttons(self, init_driver):
-    #     radio_buttons_page = RadioButtonPage(init_driver, "https://demoqa.com/radio-button")
-    #     element_text = radio_buttons_page.click_any_radio_button()
-    #     time.sleep(1)
-    #     output_text = radio_buttons_page.get_output_result()
-    #     print(element_text)
-    #     print(output_text)
-    #     assert element_text == output_text
-
-    # def test_radio_buttons(self, init_driver):
-    #     radio_buttons_page = RadioButtonPage(init_driver, "https://demoqa.com/radio-button")
-    #     radio_buttons_page.click_any_radio_button("Yes")
-    #     time.sleep(0.5)
-    #     output_yes = radio_buttons_page.get_output_result()
-    #     radio_buttons_page.click_any_radio_button("Impressive")
-    #     time.sleep(0.5)
-    #     output_impressive = radio_buttons_page.get_output_result()
-    #     # radio_buttons_page.click_any_radio_button("No")
-    #     # output_no = radio_buttons_page.get_output_result()
-    #     # radio_buttons_page.go_to_web_tables_page()
-    #     assert output_yes == "Yes", "'Yes' hasn't been selected"
-    #     assert output_impressive == "Impressive", "'Impressive' hasn't been selected"
-    #     # assert output_no == "No", "'No' hasn't been selected"

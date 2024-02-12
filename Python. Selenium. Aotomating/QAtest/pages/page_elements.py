@@ -132,9 +132,51 @@ class CheckboxPage(BasePage):
         # self.element_is_visible(collapse_all_button).click()
         self.click_on(collapse_all_button)
 
+    def go_to_radio_buttons_page(self):
+        web_radio_buttons_page_button = (By.XPATH, "//div[@class='element-group'][1]//li[@class='btn btn-light '][2]")
+        self.element_is_present(web_radio_buttons_page_button).click()
+
+
+class RadioButtonPage(BasePage):
+
+    def __init__(self, driver, url):
+        super().__init__(driver)
+        self.driver.get(url)
+
+    def click_any_radio_button(self):
+        value = ['yesRadio', 'impressiveRadio']
+        random_value = randint(0, len(value) - 1)
+        radio_btn = (By.XPATH, f"//label[@for='{value[random_value]}']")
+        self.element_is_visible(radio_btn).click()
+        time.sleep(1)
+        element_text = self.element_is_visible(radio_btn).text
+        return element_text
+
+    # def get_output_result(self):
+    #     output_text = {By.CSS_SELECTOR, "span[class='text-success']"}
+    #     time.sleep(1)
+    #     element_text = self.element_is_present(output_text)
+    #     return element_text.text
+
     def go_to_web_tables_page(self):
         web_tables_page_button = (By.XPATH, "//div[@class='element-group'][1]//li[@class='btn btn-light '][3]")
         self.element_is_present(web_tables_page_button).click()
+
+    # def click_any_radio_button(self, choice):
+    #     yes_radio_button = (By.CSS_SELECTOR, "label[class*='custom-control'][for='yesRadio']")
+    #     impressive_radio_button = (By.CSS_SELECTOR, "label[class*='custom-control'][for='impressiveRadio']")
+    #     # no_radio_button = (By.CSS_SELECTOR, "label[class^='custom-control'][for='noRadio']")
+    #     choices = {"Yes": yes_radio_button,
+    #                "Impressive": impressive_radio_button,
+    #                # "No": no_radio_button
+    #                }
+    #     self.element_is_visible(choices[choice]).click()
+    #     time.sleep(1)
+    #
+    # def get_output_result(self):
+    #     time.sleep(1)
+    #     output_result = {By.CSS_SELECTOR, "span[class='text-success']"}
+    #     return self.element_is_present(output_result).text
 
 
 class WebTablesPage(BasePage):
@@ -169,15 +211,6 @@ class WebTablesPage(BasePage):
     #     self.send_keys_to(search_input, person.e_mail)
     #     print(person.first_name, person.last_name, person.e_mail, person.age, person.salary, person.department)
     #     return person
-    #
-    # def get_added_person_data(self):
-    #     user_data_list = (By.XPATH, "//div[@class='rt-tr-group'][1]//div[@class='rt-td']")
-    #     result_list = self.elements_are_present(user_data_list)
-    #     result_text = []
-    #     for item in result_list:
-    #         result_text.append(item.text)
-    #     print(result_text)
-    #     return result_text
 
     def fill_person_form(self):
         count = 1
@@ -315,8 +348,8 @@ class ButtonsPage(BasePage):
         return simple_click_text
 
     def go_to_links_page(self):
-        buttons_page_button = (By.XPATH, "//div[@class='element-group'][1]//li[@class='btn btn-light '][5]")
-        self.element_is_present(buttons_page_button).click()
+        links_page_button = (By.XPATH, "//div[@class='element-group'][1]//li[@class='btn btn-light '][5]")
+        self.element_is_present(links_page_button).click()
 
 
 class LinksPage(BasePage):
@@ -347,40 +380,6 @@ class LinksPage(BasePage):
         else:
             return request.status_code
 
-# class RadioButtonPage(BasePage):
-#
-#     def __init__(self, driver, url):
-#         super().__init__(driver)
-#         self.driver.get(url)
-#
-#     def click_any_radio_button(self):
-#         value = ['yesRadio', 'impressiveRadio']
-#         random_value = randint(0, len(value) - 1)
-#         radio_btn = (By.XPATH, f"//label[@for='{value[random_value]}']")
-#         # radio_btn = (By.CSS_SELECTOR, "label[class='custom-control-label']")
-#         self.element_is_visible(radio_btn).click()
-#         time.sleep(1)
-#         element_text = self.element_is_visible(radio_btn).text
-#         return element_text
-#
-#     def get_output_result(self):
-#         output_text = {By.CSS_SELECTOR, "span[class='text-success']"}
-#         time.sleep(1)
-#         element_text = self.element_is_present(output_text)
-#         return element_text.text
-
-    # def click_any_radio_button(self, choice):
-    #     yes_radio_button = (By.CSS_SELECTOR, "label[class*='custom-control'][for='yesRadio']")
-    #     impressive_radio_button = (By.CSS_SELECTOR, "label[class*='custom-control'][for='impressiveRadio']")
-    #     # no_radio_button = (By.CSS_SELECTOR, "label[class^='custom-control'][for='noRadio']")
-    #     choices = {"Yes": yes_radio_button,
-    #                "Impressive": impressive_radio_button,
-    #                # "No": no_radio_button
-    #                }
-    #     self.element_is_visible(choices[choice]).click()
-    #     time.sleep(1)
-    #
-    # def get_output_result(self):
-    #     time.sleep(1)
-    #     output_result = {By.CSS_SELECTOR, "span[class='text-success']"}
-    #     return self.element_is_present(output_result).text
+    def go_to_broken_links_page(self):
+        buttons_page_button = (By.XPATH, "//div[@class='element-group'][1]//li[@class='btn btn-light '][6]")
+        self.element_is_present(buttons_page_button).click()
